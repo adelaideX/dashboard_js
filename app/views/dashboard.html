@@ -11,8 +11,8 @@
             </style>
             <select ng-model="year" ng-change="changeYear()" id="year_selector" class="form-control">
                 <option value="all">All Courses</option>
-                <option value="2014">2014</option>
                 <option value="2015">2015</option>
+                <option value="2016">2016</option>
             </select>
         </li>
         <li ng-repeat="visualisation in visualisationsList" ui-sref-active="selected">
@@ -22,7 +22,7 @@
     <div id="content_wrapper">
         <ul id="coursenav">
             <li ng-repeat="c in course.courseList" ng-class="{selected:(c.id === course.currentCourse)}">
-                <a ng-show="year==c.year || year=='all'" ng-click='course.currentCourse = c.id' ui-sref="dashboard.visualisation({visualisation: (!!currentVisualisation ? currentVisualisation : 'home'), course: c.id})" data-name="{{c.id}}"><i class="fa {{c.icon}}"></i>{{c.shortName}} <span class="year">{{c.year}}</span></a>
+                <a ng-show="year==c.year || year=='all'" ng-click='course.currentCourse = c.id' ui-sref="dashboard.visualisation({visualisation: (!!currentVisualisation ? currentVisualisation : 'home'), course: c.id})" data-name="{{c.id}}"><i class="fa {{c.icon}}"></i>{{c.shortName}} <span class="year">{{c.subName}}</span></a>
             </li>
         </ul>
         <div id="main_content">
@@ -51,7 +51,7 @@
                             width: 10, // The line thickness
                             radius: 20, // The radius of the inner circle
                             corners: 4, // Corner roundness (0..1)
-                            color: '#4A105A', // #rgb or #rrggbb or array of colors
+                            color: '#005A9C', // #rgb or #rrggbb or array of colors
                             speed: 0.8, // Rounds per second
                             top: '50%',
                             left: '50%'

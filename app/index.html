@@ -1,150 +1,168 @@
 <!doctype html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <script type="text/javascript">
-        var APIBASE = 'http://dashboard.ceit.uq.edu.au:8000/api';
-        //var APIBASE = 'http://localhost:8000/api';
-        var ADMIN_USERS = ['uqadekke','uqjzorni','uqssun','uqakonda','uqamurr3'];
-    </script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-     <!-- <script>
-          google.load("visualization", "1", {packages:["corechart"]});
-      </script> -->
+    <head>
+        <meta charset="utf-8">
+        <title>AdelaideX Analytics Dashboard</title>
+        <script type="text/javascript">
+            //        var APIBASE = 'http://dashboard.ceit.uq.edu.au:8000/api';
+            var APIBASE = 'http://localhost:8000/api'
+            //var APIBASE = 'http://localhost:8000/api';
+            var ADMIN_USERS = ['timcavanagh', 'uqbjzorni', 'uqbssun', 'uqbakonda', 'uqbamurr3'];
+        </script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <!-- <script>
+             google.load("visualization", "1", {packages:["corechart"]});
+         </script> -->
 
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="styles/status.css">
-    <link rel="stylesheet" href="styles/options.css">
-  </head>
-  <body ng-app="dashboardJsApp">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <link rel="stylesheet" href="styles/login.css">
+        <link rel="stylesheet" href="styles/status.css">
+        <link rel="stylesheet" href="styles/options.css">
+    </head>
+    <body ng-app="dashboardJsApp">
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div ng-controller="AppCtrl" ng-class="{embedded:embed}">
-    <header>
-      <a ng-href="#" title="Home" rel="home" id="logo">
-        <img src="https://online.ceit.uq.edu.au/sites/all/themes/uqx_ceit_bartik/images/uq-logo.png" alt="Home">
-        <img src="https://online.ceit.uq.edu.au/sites/all/themes/uqx_ceit_bartik/uqx-logo.png" alt="Home">
-        <p id="title">DASHBOARD</p>
-      </a>
-      <div ng-switch on="!!currentUser">
-          <div ng-switch-when="true">
-              <p id="user_welcome">Welcome {{currentUser}} (<a href="#" ng-click="userLogout()">Logout</a>)</p>
-          </div>
-          <div ng-switch-default>
-              <p id="user_welcome"><a href="#" ng-click="launchLoginModal()">Login</a></p>
-          </div>
-      </div>
-    </header>
-    <nav id="nav" class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-        <ul class="nav navbar-nav">
-            <li ng-class="{ active: $state.includes('dashboard')}"><a ui-sref="dashboard" ng-click="mainNavChanged()"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li ng-class="{ active: $state.includes('reports')}"><a ui-sref="reports" ng-click="mainNavChanged()"><i class="fa fa-list-alt"></i> Reports</a></li>
-            <!--<li ui-sref-active="active"><a ui-sref="explorer" ng-click="mainNavChanged()"><i class="fa fa-database"></i> Data Explorer</a></li>-->
-            <li ui-sref-active="active" ng-show="adminUser"><a ui-sref="person" ng-click="mainNavChanged()"><i class="fa fa-users"></i> User Lookup</a></li>
-            <li ui-sref-active="active"><a ui-sref="status" ng-click="mainNavChanged()"><i class="fa fa-spinner"></i> Data Status</a></li>
-            <li ui-sref-active="active" ng-show="adminUser"><a ui-sref="refresh" ng-click="mainNavChanged()"><i class="fa fa-refresh"></i> Refresh Endpoints</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank" href="http://uqx.uq.edu.au"><i class="fa fa-home"></i> UQx</a></li>
-        </ul>
-    </nav>
+        <!-- Add your site or application content here -->
+        <div ng-controller="AppCtrl" ng-class="{embedded:embed}">
+            <header class="row">
+                <a ng-href="#" title="Home" rel="home" id="logo">
+                    <img src="https://global.adelaide.edu.au/v/redesign1/images/bg-header-logo-ds.png" class="logo media-object pull-left" alt="Home" />
+                    <!--        <img src="images/adx_logo.png" class=" media-object pull-left" alt="Home" />-->
+                    <p class="media-heading pull-left" id="title">AdelaideX Dashboard</p>
 
-    <div ng-view=""></div>
-    <div ui-view=""></div>
-
-
-
-    <footer id="footer" role="contentinfo" class="clearfix">
-        <div class="region region-footer">
-            <div id="block-block-2" class="block block-block contextual-links-region">
-
-
-                <div class="content">
-                    <div class="footer-column">
-                        <a href="http://www.uq.edu.au"><img alt="The University of Queensland Australia"
-                                                            src="https://online.ceit.uq.edu.au/sites/all/themes/uqx_ceit_bartik/images/uq-logo.png"/></a>
+                </a>
+                <div class="pull-right" ng-switch on="!!currentUser">
+                    <div ng-switch-when="true">
+                        <p id="user_welcome">Welcome {{currentUser}} (<a href="#" ng-click="userLogout()">Logout</a>)</p>
                     </div>
-
-                    <div class="footer-column">
-                        <p>The University of Queensland<br/>
-                            Brisbane St Lucia, QLD 4072</p>
-
-                        <p>© The University of Queensland</p>
-                    </div>
-
-                    <div class="footer-column">
-                        <p>ABN 63 942 912 684<br/>
-                            CRICOS Provider No:00025B</p>
-
-                        <p>Authorised by: Director of CEIT<br/>
-                            Maintained by: <a href="mailto:online@ceit.uq.edu.au">online@ceit.uq.edu.au</a></p>
-                    </div>
-
-                    <div class="footer-column">
-                        <p>HELP AND SUPPORT<br/>
-                            Contact <a href="mailto:online@ceit.uq.edu.au">online@ceit.uq.edu.au</a></p>
-                        <p>You should be familiar with UQ policy <a target="_blank" href="https://ppl.app.uq.edu.au/content/1.60.02-privacy-management">1.60.02 Privacy Management</a> when accessing this dashboard.</p>
+                    <div ng-switch-default>
+                        <p id="user_welcome"><a href="#" ng-click="launchLoginModal()">Login</a></p>
                     </div>
                 </div>
-            </div>
+            </header>
+            <nav id="nav" class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ active: $state.includes('dashboard')}"><a ui-sref="dashboard" ng-click="mainNavChanged()"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li ng-class="{ active: $state.includes('reports')}"><a ui-sref="reports" ng-click="mainNavChanged()"><i class="fa fa-list-alt"></i> Reports</a></li>
+                    <!--<li ui-sref-active="active"><a ui-sref="explorer" ng-click="mainNavChanged()"><i class="fa fa-database"></i> Data Explorer</a></li>-->
+                    <li ui-sref-active="active" ng-show="adminUser"><a ui-sref="person" ng-click="mainNavChanged()"><i class="fa fa-users"></i> User Lookup</a></li>
+                    <li ui-sref-active="active"><a ui-sref="status" ng-click="mainNavChanged()"><i class="fa fa-spinner"></i> Data Status</a></li>
+                    <li ui-sref-active="active" ng-show="adminUser"><a ui-sref="refresh" ng-click="mainNavChanged()"><i class="fa fa-refresh"></i> Refresh Endpoints</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a target="_blank" href="https://www.adelaide.edu.au/adelaidex/"><i class="fa fa-home"></i> AdelaideX</a></li>
+                </ul>
+            </nav>
+
+            <div ng-view=""></div>
+            <div ui-view=""></div>
+
+
+
+            <footer id="footer" role="contentinfo" class="clearfix">
+                <div id="footer-tagline">
+                    <a title="seek LIGHT" href="http://www.adelaide.edu.au/seek-light/">
+                        <img alt="seek LIGHT" src="https://login-prodnpc.adelaide.edu.au/cas/images/ui-tagline-seek-light.png">
+                    </a>
+                </div>
+
+                <div class="region region-footer">
+                    <div id="block-block-2" class="block block-block contextual-links-region">
+
+
+                        <div class="content">
+                            <div class="footer-column"> </div>
+
+                            <div class="footer-column" id="footer-home-column">
+                                <h4 class="footer-title"><a href="//www.adelaide.edu.au/">Home</a></h4>
+                                <ul>
+                                    <li><a href="//www.adelaide.edu.au/legals/copyright.html">Copyright</a> <span class="hidden-phone hidden-tablet">&amp; <a href="//www.adelaide.edu.au/legals/disclaim.html">Disclaimer</a></span></li>
+                                    <li><a title="Privacy Statement" href="//www.adelaide.edu.au/legals/privacy.html">Privacy Statement</a></li>
+                                    <li><a title="Website Feedback" href="//www.adelaide.edu.au/front/feedback.html">Feedback</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="footer-column"> </div>
+
+                            <div class="footer-column" id="footer-adx-column">
+                                <h4 class="footer-title">AdelaideX</h4>
+                                <ul>
+                                    <li><a title="About adX" href="https://www.adelaide.edu.au/adelaidex">About AdelaideX</a></li>
+                                    <li><a title="edX" href="https://www.edx.org/school/adelaidex">AdelaideX Courses - edX</a></li>
+                                    <li><a title="Contact Us" href="#">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-column"> </div>
+                            <div class="footer-column" id="footer-address-column"> 
+
+                                <a title="The University of Adelaide" href="//www.adelaide.edu.au/"><img class="logo" alt="The University of Adelaide" src="https://login-prodnpc.adelaide.edu.au/cas/images/bg-footer-logo.png"></a>
+                                <p class="address"><a href="https:////www.adelaide.edu.au/" class="fn org summary">The University of Adelaide</a><br>
+                                    <span class="adr">
+                                        <span class="locality">Adelaide</span>, <span class="region">South Australia</span><br>
+                                        <span class="postal-code">5005</span> Australia
+                                    </span><br><br>
+                                    CRICOS Provider Number 00123M
+                                    <span id="footer-meta-extra" title="1.2">&nbsp;</span>
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
-    </div>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+        <!--    <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        
+                ga('create', 'UA-51272350-1', 'uq.edu.au');
+                ga('send', 'pageview');
+            </script>-->
 
-        ga('create', 'UA-51272350-1', 'uq.edu.au');
-        ga('send', 'pageview');
-    </script>
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
-    <script src="bower_components/datamaps/dist/datamaps.all.js"></script>
-    <script src="bower_components/angular-cookie/angular-cookie.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/d3/d3.js"></script>
+        <script src="bower_components/datamaps/dist/datamaps.all.js"></script>
+        <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
 
-    <script>
-          var charts = angular.module('charts', []);
-      </script>
+        <script>
+                                        var charts = angular.module('charts', []);
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
@@ -194,5 +212,5 @@
         <script src="scripts/directives/stackedarea2/stackedarea2.js"></script>
         <script src="scripts/directives/line/line.js"></script>
         <script src="scripts/directives/world/world.js"></script>
-</body>
+    </body>
 </html>

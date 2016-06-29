@@ -54,7 +54,7 @@ app.directive('visBar', function() {
 					}
 
 					/* default chart options */
-					var barFill = '#393b79',
+					var barFill = '#005A9C', //#393b79',
 						highlightFill = d3.rgb(barFill).brighter(),
 						tipOn = true,
 						ceilUnit = 5,

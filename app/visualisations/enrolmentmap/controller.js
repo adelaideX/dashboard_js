@@ -12,7 +12,7 @@ angular.module('dashboardJsApp')
 		$scope.enrolmentData = [];
 		$scope.populationData = [];
 		$scope.auth = AuthService;
-		$scope.colourString = '81, 84, 172';
+		$scope.colourString = '0, 90, 156';
 
         $scope.total_countries = 0;
 
