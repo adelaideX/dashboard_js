@@ -1,0 +1,43 @@
+<!--<iframe title="Adx Dashboard Feedback" src="http://loco.services.adelaide.edu.au/analytics-forms/feedback/" scrolling="no" style="width: 100%; height: 250px; overflow:hidden;"></iframe>-->
+<form action="javascript:void(0);" id="feedback-form" name="feedback-form" data-toggle="validator" ng-submit="submitForm()">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="messages" class="alert fade in {{alertclass}}" ng-show="message">{{message}}</div>
+
+            <div class="form-group">
+                <label class="col-md-6 control-label">Is there a problem?</label>
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <label>
+                            <input type="radio" name="problem" ng-model="fb.problem"  value="Yes" required="required" />
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="problem" ng-model="fb.problem"  value="Maybe" required="required" />
+                            Maybe
+                        </label>
+                        <label>
+                            <input type="radio" name="problem" ng-model="fb.problem"  value="No" required="required" />
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="feedback" class="col-md-6 control-label">Your feedback:</label>
+                <textarea id="feedback" rows="5" ng-model="fb.feedback" required="required" class="col-md-6 form-control"></textarea> 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="margin-top: 25px">
+            <div class="form-group">
+                <input id="finish" ng-disabled="isDisabled" class="btn btn-primary" type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+</form>

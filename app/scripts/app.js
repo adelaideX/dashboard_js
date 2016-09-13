@@ -99,13 +99,27 @@ var app = angular
 
                 $scope.mainNavChanged = function () {
                     $scope.$broadcast('nav_clicked');
-                }
+                };
 
                 $scope.userLogout = function () {
                     $scope.$broadcast('broadcast_logout');
                     AuthService.logout();
                 };
-
+                $scope.feedbackModal = function () {
+                  createDialogService({
+                        id: 'feedbackDialog',
+                        templateUrl: 'views/feedback.html',
+                        title: 'AdX Dashboard Feedback',
+                        footerTemplate: '<div></div>',
+                        backdrop: true,
+                        controller: 'feedbackCtrl',
+                        css: {
+                            top: '100px',
+                            margin: '0 auto'
+                        }
+                    });
+                };
+                
                 $scope.launchLoginModal = function () {
                     createDialogService({
                         id: 'loginDialog',
