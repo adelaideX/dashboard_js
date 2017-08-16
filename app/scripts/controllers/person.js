@@ -61,7 +61,7 @@ angular.module('dashboardJsApp')
             }
             if($scope.profile.profile.country != "") {
                 $scope.profile.profile.country = $scope.countries[$scope.profile.profile.country];
-                $scope.profile.profile.country_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyARoCf9ngINTEJ_pexAod-HWTUE_CoLc2I&zoom=3&q="+$scope.profile.profile.country
+                $scope.profile.profile.country_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBaPCMEVEm0PUCleYiLYNzMt5hind3e8Gw&zoom=3&q="+$scope.profile.profile.country
             }
 
         });
