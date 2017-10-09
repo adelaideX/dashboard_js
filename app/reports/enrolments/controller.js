@@ -183,7 +183,7 @@ angular.module('dashboardJsApp')
         progress2['Only Registered'] = progress['registered'] - progress['viewed'];
         progress2['Only Viewed'] = progress['viewed'] - progress['explored'];
         progress2['Only Explored'] = progress['explored'] - progress['certified'];
-        progress2['Certified'] = progress['certified'];
+        progress2['Certificate Eligble'] = progress['certified'];
         console.log('progress2', progress2);
         $scope.progress = $scope.formatPieData(progress2);
       });
