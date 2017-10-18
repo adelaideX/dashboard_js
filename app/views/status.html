@@ -15,17 +15,17 @@
 </div>
 <script>
     $(document).ready(function () {
-        window.setInterval(function () {
-            reloadData()
-        }, 10000);
+        // window.setInterval(function () {
+        //     reloadData()
+        // }, 15000);
         reloadData();
     });
     function reloadData() {
         $.ajax({
-            url: APIBASE+'/meta/ingeststatus',
+            url: APIBASE+'/meta/ingeststatus/',
             success: function (data) {
                 $('#services').html('');
-                console.log(data);
+                console.log('the data: ', data);
                 for (var app in data) {
                     var list = '<dl class="dl-horizontal">';
                     var status = data[app];
@@ -58,10 +58,10 @@
                     $('#services').append(service);
                 }
             },
-            error: function (data) {
+            error: function () {
                 $('#services').html('<div class="alert alert-danger">Error: Could not connect to services</div>');
             },
-            timeout: 2000
+            timeout: 10000
         });
     }
 </script>
