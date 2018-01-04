@@ -49,16 +49,19 @@ angular.module('dashboardJsApp')
                                 }
 
                                 var formattedNormalData = [{name: 'Active', data: []}, {name: 'Enrolled', data: []}];
+                                var formattedMarketData = [{name: 'Enrolled', data: []}];
                                 var formattedAggregateData = [{name: 'Aggregate Active', data: []}, {name: 'Aggregate Enrolled', data: []}];
 
                                 for (var key in data) {
                                     formattedNormalData[0].data.push({date: key, value: data[key].active});
                                     formattedNormalData[1].data.push({date: key, value: data[key].enrolled});
+                                    formattedMarketData[0].data.push({date: key, value: data[key].enrolled});
                                     formattedAggregateData[0].data.push({date: key, value: data[key].aggregate_active});
                                     formattedAggregateData[1].data.push({date: key, value: data[key].aggregate_enrolled});
                                 }
 
                                 $scope.normalData = formattedNormalData;
+                                $scope.marketData = formattedMarketData;
                                 $scope.aggregateData = formattedAggregateData;
                                 $scope.$parent.state = "running";
                             });
