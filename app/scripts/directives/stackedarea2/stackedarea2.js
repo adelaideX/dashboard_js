@@ -29,6 +29,18 @@ app.directive('visStackedarea2', function() {
 
                     //console.log('words', words);
                     var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy0);
+                    // identify the video labels, remove them from array and then bold
+                    if (words[0] === '(v)') {
+                        text.style('font-weight', 'bold');
+                        // remove first item in the array (v)
+                        words.shift();
+                    }
+                    // identify the chapter labels, remove them from array and then bold
+                    if (words[0] === '(c)') {
+                        text.style({'font-weight': 'bold', 'text-decoration': 'underline'});
+                        // remove first item in the array (c)
+                        words.shift();
+                    }
                     while((word = words.pop()) && ll < 2) {
                         line.push(word);
                         tspan.text(line.join(" "));
@@ -51,7 +63,7 @@ app.directive('visStackedarea2', function() {
                         }
                    }
                 //*/
-                 if( ll == 1) {
+                 if( ll === 1) {
                      text.style("text-anchor", 'end')
                          .attr("dx", "-.8em")
                          //.attr("dy", ".15em")
@@ -122,8 +134,9 @@ app.directive('visStackedarea2', function() {
                         height2 = scope.height - margin2.top - margin2.bottom;
 
 
-                    console.log('layerData', scope.data);
-                    console.log('metaData', scope.ndata);
+                    //console.log('layerData', scope.data);
+                    //console.log('metaData', scope.ndata);
+                    
 
 
                     var m = scope.ndata.eventList.length;
