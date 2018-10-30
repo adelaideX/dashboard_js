@@ -49,13 +49,15 @@ angular.module('dashboardJsApp')
                                 }
 
                                 var formattedNormalData = [{name: 'Active', data: []}, {name: 'Enrolled', data: []}];
-                                var formattedMarketData = [{name: 'Enrolled', data: []}];
+                                var formattedMarketData = [{name: 'Enrolled', data: []}, {name: 'Marketing Enrolled', data: []}, {name: 'Marketing Verified', data: []}];
                                 var formattedAggregateData = [{name: 'Aggregate Active', data: []}, {name: 'Aggregate Enrolled', data: []}];
 
                                 for (var key in data) {
                                     formattedNormalData[0].data.push({date: key, value: data[key].active});
                                     formattedNormalData[1].data.push({date: key, value: data[key].enrolled});
                                     formattedMarketData[0].data.push({date: key, value: data[key].enrolled});
+                                    formattedMarketData[1].data.push({date: key, value: data[key].mkt_enrolled});
+                                    formattedMarketData[2].data.push({date: key, value: data[key].mkt_verified});
                                     formattedAggregateData[0].data.push({date: key, value: data[key].aggregate_active});
                                     formattedAggregateData[1].data.push({date: key, value: data[key].aggregate_enrolled});
                                 }

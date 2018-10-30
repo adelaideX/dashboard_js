@@ -16,8 +16,8 @@ angular.module('dashboardJsApp')
                 var headers = {};
                 if(AuthService.getToken()) {
                     headers = {'Authorization': 'JWT ' + AuthService.getToken()}
-                    console.log("CCC");
-                    console.log(headers);
+                    //console.log("CCC");
+                    //console.log(headers);
                 }
                 url = url.replace("allcourses/","");
 				// $http returns a promise, which has a then function, which also returns a promise
@@ -31,7 +31,7 @@ angular.module('dashboardJsApp')
 				}, function(response) {
 					if (response.status === 401) {
 						AuthService.deleteToken();
-                        console.log("BAD BAD NEED TO REAUTH");
+                        //console.log("BAD BAD NEED TO REAUTH");
                         location.reload();
 					}
 				});
